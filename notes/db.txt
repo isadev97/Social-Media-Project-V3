@@ -42,3 +42,8 @@ Ref: users.id < like_post.user_id  // one to many
 Ref: posts.id < like_post.post_id  // one to many
 
 
+OneToOneField => 1:1
+ManyToManyField => M:N
+OneToMany or ManyToOne => Using Foreign Key
+
+
