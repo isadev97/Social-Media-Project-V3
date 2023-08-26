@@ -1,3 +1,5 @@
+26th Aug, 2023 (Sat)
+
 // Use DBML to define your database structure
 // Docs: https://dbml.dbdiagram.io/docs
 
@@ -46,4 +48,5 @@ OneToOneField => 1:1
 ManyToManyField => M:N
 OneToMany or ManyToOne => Using Foreign Key
 
+python3 manage.py dbshell to connect to db shell
 
