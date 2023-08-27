@@ -8,9 +8,6 @@ from media_app.models import Profile
 def sign_up_view(request):
     page_name = "sign_up.html"
     if request.method == "GET":
-        print(request.user)
-        print(request.user.is_authenticated)
-        print(request.user.username)
         return render(request, page_name)
     else: # POST
         email = request.POST['email']
@@ -37,7 +34,14 @@ def sign_in_view(request):
     if request.method == "GET":
         return render(request, page_name)
     else: # POST
-        pass
-
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(username=username, password=password)
+        if not user:
+            return render(request, page_name, context={"error": True, "error_msg": "Invalid credentials"})
+        Profile.objects.get_or_create(user=user)
+        auth.login(request, user)
+        return render(request, page_name)
+    
 def sign_out_view(request):
     pass 
