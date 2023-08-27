@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from authentication.models import User
 from django.contrib.auth.models import auth
@@ -8,6 +8,7 @@ from media_app.models import Profile
 def sign_up_view(request):
     page_name = "sign_up.html"
     if request.method == "GET":
+        print(request.user)
         return render(request, page_name)
     else: # POST
         email = request.POST['email']
@@ -44,4 +45,5 @@ def sign_in_view(request):
         return render(request, page_name)
     
 def sign_out_view(request):
-    pass 
+    auth.logout(request)
+    return redirect('sign_in')
