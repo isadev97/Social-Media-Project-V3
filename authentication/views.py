@@ -8,7 +8,6 @@ from media_app.models import Profile
 def sign_up_view(request):
     page_name = "sign_up.html"
     if request.method == "GET":
-        print(request.user)
         return render(request, page_name)
     else: # POST
         email = request.POST['email']
