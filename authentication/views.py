@@ -27,7 +27,7 @@ def sign_up_view(request):
         user = auth.authenticate(username=username, password=password)
         Profile.objects.get_or_create(user=user)
         auth.login(request, user)
-        return render(request, page_name)
+        return redirect('index')
 
 def sign_in_view(request):
     page_name = "sign_in.html"
@@ -41,8 +41,8 @@ def sign_in_view(request):
             return render(request, page_name, context={"error": True, "error_msg": "Invalid credentials"})
         Profile.objects.get_or_create(user=user)
         auth.login(request, user)
-        return render(request, page_name)
+        return redirect('index')
     
 def sign_out_view(request):
     auth.logout(request)
-    return redirect('sign_in')
+    return redirect('index')
