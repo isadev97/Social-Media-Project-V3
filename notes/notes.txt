@@ -50,3 +50,55 @@ OneToMany or ManyToOne => Using Foreign Key
 
 python3 manage.py dbshell to connect to db shell
 
+media/post will have all the images of post
+media/profile will have all the images of profile
+
+*** Optional content for learning (we cover this again in system design) *** 
+S3
+
+S - Simple
+S - Storage
+S - Service
+
+
+bucket1 => key (unique) => Image File 
+bucket2
+bucket3
+
+
+
+aws s3 =>   profile bucket => username.file_ext (key)=> File
+            post bucket => post_image_id.ext => File
+
+
+
+regions => bucket = {
+
+ 	"key1" : <Image File>
+ 	"key2" : <Image File>
+
+ }
+
+
+bucket['key1'] => Image File
+datetime.now() dd/mm/yyyy h:m:s
+key = username-datetime.now()
+
+put_object = uploading the image in a bucket with a particular file key
+get_object = fetching the image in a bucket with a particular file key
+delete_object
+
+
+bucket 
+
+key profile/username-image1.png => File
+
+key profile/username-image.jpeg
+key profile/username-image3.gif
+
+
+profile/    username-image1.png 
+            username-image.jpeg
+
+settings object versioning => Turned off
+
