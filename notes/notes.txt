@@ -102,3 +102,5 @@ profile/    username-image1.png
 
 settings object versioning => Turned off
 
+
+html form => submit form => we send the data => call the decorator first => call the view
