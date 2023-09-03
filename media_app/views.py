@@ -26,8 +26,9 @@ def submit_post(request):
     return redirect('index')
 
 @login_required(login_url='sign_in')
-def like_post(request, post_id):
+def like_post(request):
     user = request.user
+    post_id = get_data(request, 'post_id')
     LikePost.objects.create(
         user_id=user.id,
         post_id=post_id
