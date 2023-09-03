@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from media_app.models import Post, LikePost
+from media_app.models import Post, LikePost, Profile
 from authentication.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -51,3 +51,13 @@ def profile_view(request, username):
         "likes_received_for_the_user": LikePost.objects.filter(post__user=user).count()
     }
     return render(request, page_name, context=data)
+
+
+@login_required(login_url='sign_in')
+def upload_profile_image(request):
+    user = request.user
+    image = request.FILES['profile_image']
+    profile = Profile.objects.get(user=user)
+    profile.image = image
+    profile.save()
+    return redirect(f'/profile/{user.username}')

@@ -19,7 +19,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         {% if request.user.is_authenticated %}
             <div style="display: flex; flex-direction: row;">
-                <p>Hello, {{request.user.username}}</p>
+                <a href="/profile/{{request.user.username}}">Hello, {{request.user.username}}</a>
                 <a style="margin-left: 1rem;" class="btn btn-outline-dark" href="/sign_out">Sign out</a>
             </div>
         {% else %}
