@@ -46,8 +46,8 @@ def profile_view(request, username):
     page_name = "profile.html"
     data = {
         "profile_user": user,
-        "likes_made": 0,
-        "posts_made": 0,
-        "likes_received": 0,
+        "likes_made_by_the_user": user.like_post.count(), # LikePost.objects.filter(user=user).count()
+        "posts_made_by_the_user": user.post.count(), # or Post.objects.filter(user=user).count(),
+        "likes_received_for_the_user": LikePost.objects.filter(post__user=user).count()
     }
     return render(request, page_name, context=data)
