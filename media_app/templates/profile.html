@@ -26,5 +26,10 @@
     <h6>Posts Made {{ posts_made_by_the_user }}</h6>
     <h6>Likes made - {{ likes_made_by_the_user }}</h6>
     <h6>Likes received {{ likes_received_for_the_user }}</h6>
+    <ul>
+    {% for top_post in top_posts %}
+    <li>{{top_post.caption}}</li>
+    {% endfor %}
+    </ul>
   </div>
 {% endblock %}

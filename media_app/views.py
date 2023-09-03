@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from media_app.models import Post, LikePost, Profile
 from authentication.models import User
 from django.contrib.auth.decorators import login_required
+from django.db.models import Avg, Count
 
 def get_data(request, key):
     return request.GET.get(key) or request.POST.get(key)
@@ -47,6 +48,7 @@ def profile_view(request, username):
     user = User.objects.get(username=username)
     page_name = "profile.html"
     data = {
+        "top_posts": user.post.all().annotate(likes_received=Count("like_post")).order_by("-likes_received", "-created_at")[:3],
         "profile_user": user,
         "likes_made_by_the_user": user.like_post.count(), # LikePost.objects.filter(user=user).count()
         "posts_made_by_the_user": user.post.count(), # or Post.objects.filter(user=user).count(),
