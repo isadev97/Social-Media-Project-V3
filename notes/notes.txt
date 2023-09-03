@@ -108,3 +108,9 @@ html form => submit form => we send the data => call the decorator first => call
 https://docs.djangoproject.com/en/4.2/ref/models/fields/
 https://docs.djangoproject.com/en/4.2/topics/db/aggregation/
 
+<QuerySet [<Post: Post object (1)>, <Post: Post object (2)>, <Post: Post object (3)>]>
+>>> Post.objects.exclude(id__in=[1, 2, 3])
+<QuerySet [<Post: Post object (4)>, <Post: Post object (5)>, <Post: Post object (6)>, <Post: Post object (7)>, <Post: Post object (8)>, <Post: Post object (9)>]>
+>>> 
+
+
