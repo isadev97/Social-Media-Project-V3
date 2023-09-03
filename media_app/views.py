@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from media_app.models import Post, LikePost
+from authentication.models import User
 from django.contrib.auth.decorators import login_required
 
 def get_data(request, key):
@@ -37,3 +38,16 @@ def like_post(request):
     # post = Post.objects.get(id=post_id)
     # LikePost.objects.create(user=user, post=post)
     return redirect('index')
+
+
+@login_required(login_url='sign_in')
+def profile_view(request, username):
+    user = User.objects.get(username=username)
+    page_name = "profile.html"
+    data = {
+        "profile_user": user,
+        "likes_made": 0,
+        "posts_made": 0,
+        "likes_received": 0,
+    }
+    return render(request, page_name, context=data)
