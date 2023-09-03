@@ -31,7 +31,9 @@
           <p class="card-text">{{post.caption}}</p>
           <a class="badge rounded-pill bg-dark" href="/profile/{{post.user.username}}">Posted by {{post.user.username}}</a>
           <span class="badge rounded-pill bg-dark">At {{post.created_at}}</span>
-          {% if request.user.id != post.user.id %}
+          {% if post.id in already_liked_post_ids %}
+            <span class="badge bg-primary">Already Liked !</span>
+          {% elif request.user.id != post.user.id %}
           <form method="POST" action="{% url 'like_post' %}">
             {% csrf_token %}
             <input type="hidden" value="{{post.id}}" name="post_id" />

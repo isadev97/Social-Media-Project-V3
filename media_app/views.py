@@ -9,7 +9,9 @@ def get_data(request, key):
 # Create your views here.
 def index_view(request):
     page_name = "index.html"
+    user = request.user
     data = {
+        "already_liked_post_ids" : list(set(LikePost.objects.filter(user=user).values_list('post_id', flat=True))),
         "posts" : Post.objects.all().order_by('-created_at')
     }
     return render(request, page_name, context=data)
